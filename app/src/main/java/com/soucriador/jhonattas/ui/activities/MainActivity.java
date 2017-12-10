@@ -7,6 +7,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.soucriador.jhonattas.R;
 import com.soucriador.jhonattas.ui.components.PostFragment;
@@ -16,6 +17,27 @@ public class MainActivity extends AppCompatActivity implements PostFragment.OnLi
 
     private TextView mTextMessage;
     FragmentTransaction ft;
+    private final String API_KEY = "";
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        if(API_KEY.isEmpty()) {
+            Toast.makeText(this, "Please obtain your API KEY", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        PostFragment pf = PostFragment.newInstance(1);
+        ft = getSupportFragmentManager().beginTransaction();
+        ft.replace(R.id.fragmentContainer, pf);
+        ft.commit();
+
+        mTextMessage = (TextView) findViewById(R.id.message);
+        BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
+        // navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+    }
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -36,21 +58,6 @@ public class MainActivity extends AppCompatActivity implements PostFragment.OnLi
             return false;
         }
     };
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-
-        PostFragment pf = PostFragment.newInstance(1);
-        ft = getSupportFragmentManager().beginTransaction();
-        ft.replace(R.id.fragmentContainer, pf);
-        ft.commit();
-
-        mTextMessage = (TextView) findViewById(R.id.message);
-        BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
-        // navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
-    }
 
     @Override
     public void onListFragmentInteraction(DummyContent.DummyItem item) {
