@@ -1,10 +1,12 @@
-package com.soucriador.jhonattas.model.jekyll;
+package com.soucriador.jhonattas.model;
 
 import com.google.gson.annotations.SerializedName;
+import com.soucriador.jhonattas.model.jekyll.Author;
+import com.soucriador.jhonattas.model.jekyll.Post;
 
 import java.util.List;
 
-public class Feed {
+public class FeedResponse {
 
     @SerializedName("version")
     private String version;
@@ -21,7 +23,7 @@ public class Feed {
     @SerializedName("items")
     private List<Post> items;
 
-    public Feed() {
+    public FeedResponse() {
         setVersion("");
         setTitle("");
         setHomePageUrl("");
@@ -31,7 +33,7 @@ public class Feed {
         setItems(null);
     }
 
-    public Feed(
+    public FeedResponse(
             String version,
             String title,
             String homePageUrl,
@@ -105,3 +107,4 @@ public class Feed {
         this.items = items;
     }
 }
+

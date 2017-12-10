@@ -14,6 +14,9 @@ android {
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary= true
+
+        buildConfigField("String", "server_main", "\"https://soucriador.com/\"")
+        buildConfigField("String", "server_api", "\"https://api.soucriador.com/\"")
     }
     buildTypes {
         release {
@@ -37,6 +40,7 @@ dependencies {
     // retrofit
     compile 'com.google.code.gson:gson:2.8.2'
     compile 'com.squareup.retrofit2:retrofit:2.3.0'
+    compile 'com.squareup.retrofit2:converter-gson:2.3.0'
 
     // picasso
     compile 'com.squareup.picasso:picasso:2.5.2'
