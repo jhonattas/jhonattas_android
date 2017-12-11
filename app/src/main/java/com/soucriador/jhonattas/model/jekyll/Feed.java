@@ -104,4 +104,17 @@ public class Feed {
     public void setItems(List<Post> items) {
         this.items = items;
     }
+
+    @Override
+    public String toString() {
+        return "Feed{" +
+                "version='" + version + '\'' +
+                ", title='" + title + '\'' +
+                ", homePageUrl='" + homePageUrl + '\'' +
+                ", feedUrl='" + feedUrl + '\'' +
+                ", description='" + description + '\'' +
+                ", author=" + author +
+                ", items=" + items +
+                '}';
+    }
 }

@@ -4,14 +4,14 @@ import java.util.Date;
 
 public class Post {
 
-    private int id;
+    private String id;
     private String url;
     private String title;
     private String contentHtml;
     private Date datePublished;
 
     public Post(){
-        setId(0);
+        setId("");
         setUrl("");
         setTitle("");
         setContentHtml("");
@@ -19,7 +19,7 @@ public class Post {
     }
 
     public Post(
-            int id,
+            String id,
             String url,
             String title,
             String contentHtml,
@@ -32,11 +32,11 @@ public class Post {
         setDatePublished(datePublished);
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 

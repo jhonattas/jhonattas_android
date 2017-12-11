@@ -5,16 +5,27 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.MenuItem;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.soucriador.jhonattas.R;
+import com.soucriador.jhonattas.model.jekyll.Feed;
+import com.soucriador.jhonattas.rest.ServerClient;
+import com.soucriador.jhonattas.rest.ServerInterface;
 import com.soucriador.jhonattas.ui.components.PostFragment;
 import com.soucriador.jhonattas.ui.components.dummy.DummyContent;
 
+import java.io.IOException;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 public class MainActivity extends AppCompatActivity implements PostFragment.OnListFragmentInteractionListener {
 
+    private static final String TAG = MainActivity.class.getSimpleName();
     private TextView mTextMessage;
     FragmentTransaction ft;
     private final String API_KEY = "";
@@ -26,8 +37,24 @@ public class MainActivity extends AppCompatActivity implements PostFragment.OnLi
 
         if(API_KEY.isEmpty()) {
             Toast.makeText(this, "Please obtain your API KEY", Toast.LENGTH_SHORT).show();
-            return;
+            // return;
         }
+
+        ServerInterface serverService = ServerClient.getClient().create(ServerInterface.class);
+
+        Call<Feed> feedCall = serverService.getFeed();
+        feedCall.enqueue(new Callback<Feed>() {
+            @Override
+            public void onResponse(Call<Feed> call, Response<Feed> response) {
+                Feed feed = response.body();
+                Log.d(TAG, "dados recuperados: " + feed.toString());
+            }
+
+            @Override
+            public void onFailure(Call<Feed> call, Throwable t) {
+                Log.e(TAG, t.toString());
+            }
+        });
 
         PostFragment pf = PostFragment.newInstance(1);
         ft = getSupportFragmentManager().beginTransaction();
