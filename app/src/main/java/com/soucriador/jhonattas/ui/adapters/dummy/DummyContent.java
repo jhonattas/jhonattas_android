@@ -1,4 +1,4 @@
-package com.soucriador.jhonattas.ui.components.dummy;
+package com.soucriador.jhonattas.ui.adapters.dummy;
 
 import java.util.ArrayList;
 import java.util.HashMap;

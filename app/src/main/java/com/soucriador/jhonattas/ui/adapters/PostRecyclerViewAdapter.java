@@ -1,4 +1,4 @@
-package com.soucriador.jhonattas.ui.components;
+package com.soucriador.jhonattas.ui.adapters;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -7,8 +7,8 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.soucriador.jhonattas.R;
-import com.soucriador.jhonattas.ui.components.PostFragment.OnListFragmentInteractionListener;
-import com.soucriador.jhonattas.ui.components.dummy.DummyContent.DummyItem;
+import com.soucriador.jhonattas.ui.fragments.PostFragment.OnListFragmentInteractionListener;
+import com.soucriador.jhonattas.ui.adapters.dummy.DummyContent.DummyItem;
 
 import java.util.List;
 

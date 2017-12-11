@@ -1,4 +1,4 @@
-package com.soucriador.jhonattas.ui.components;
+package com.soucriador.jhonattas.ui.fragments;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -6,34 +6,34 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.soucriador.jhonattas.R;
-import com.soucriador.jhonattas.ui.components.dummy.DummyContent;
-import com.soucriador.jhonattas.ui.components.dummy.DummyContent.DummyItem;
+import com.soucriador.jhonattas.model.jekyll.Feed;
+import com.soucriador.jhonattas.rest.ServerClient;
+import com.soucriador.jhonattas.rest.ServerInterface;
+import com.soucriador.jhonattas.ui.adapters.FeedAdapter;
+import com.soucriador.jhonattas.ui.adapters.PostRecyclerViewAdapter;
+import com.soucriador.jhonattas.ui.adapters.dummy.DummyContent;
+import com.soucriador.jhonattas.ui.adapters.dummy.DummyContent.DummyItem;
 
-import java.util.List;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
-/**
- * A fragment representing a list of Items.
- * <p/>
- * Activities containing this fragment MUST implement the {@link OnListFragmentInteractionListener}
- * interface.
- */
 public class PostFragment extends Fragment {
 
-    // TODO: Customize parameter argument names
+    private static final String TAG = PostFragment.class.getSimpleName();
+
     private static final String ARG_COLUMN_COUNT = "column-count";
-    // TODO: Customize parameters
     private int mColumnCount = 1;
     private OnListFragmentInteractionListener mListener;
+    private RecyclerView recyclerView;
+    private Feed feed = null;
 
-    /**
-     * Mandatory empty constructor for the fragment manager to instantiate the
-     * fragment (e.g. upon screen orientation changes).
-     */
     public PostFragment() {
     }
 
@@ -42,8 +42,6 @@ public class PostFragment extends Fragment {
         return fragment;
     }
 
-    // TODO: Customize parameter initialization
-    @SuppressWarnings("unused")
     public static PostFragment newInstance(int columnCount) {
         PostFragment fragment = new PostFragment();
         Bundle args = new Bundle();
@@ -62,20 +60,40 @@ public class PostFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_post_list, container, false);
+
+        ServerInterface serverService = ServerClient.getClient().create(ServerInterface.class);
+
+        Call<Feed> feedCall = serverService.getFeed();
 
         // Set the adapter
         if (view instanceof RecyclerView) {
             Context context = view.getContext();
-            RecyclerView recyclerView = (RecyclerView) view;
+            recyclerView = (RecyclerView) view;
             if (mColumnCount <= 1) {
                 recyclerView.setLayoutManager(new LinearLayoutManager(context));
             } else {
                 recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
             }
-            recyclerView.setAdapter(new PostRecyclerViewAdapter(DummyContent.ITEMS, mListener));
+
+            feedCall.enqueue(new Callback<Feed>() {
+                @Override
+                public void onResponse(Call<Feed> call, Response<Feed> response) {
+                    feed = new Feed();
+                    feed = response.body();
+                    Log.d(TAG, "dados recuperados: " + feed.toString());
+                    if(feed != null) {
+                        recyclerView.setAdapter(new FeedAdapter(feed.getItems(), R.layout.list_item_post, getContext()));
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<Feed> call, Throwable t) {
+                    Log.e(TAG, t.toString());
+                }
+            });
+
         }
         return view;
     }
@@ -87,8 +105,7 @@ public class PostFragment extends Fragment {
         if (context instanceof OnListFragmentInteractionListener) {
             mListener = (OnListFragmentInteractionListener) context;
         } else {
-            throw new RuntimeException(context.toString()
-                    + " must implement OnListFragmentInteractionListener");
+            throw new RuntimeException(context.toString() + " must implement OnListFragmentInteractionListener");
         }
     }
 
@@ -98,18 +115,7 @@ public class PostFragment extends Fragment {
         mListener = null;
     }
 
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p/>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
-     */
     public interface OnListFragmentInteractionListener {
-        // TODO: Update argument type and name
         void onListFragmentInteraction(DummyItem item);
     }
 }
