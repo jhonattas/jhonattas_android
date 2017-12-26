@@ -5,6 +5,7 @@ import java.util.Date;
 public class Post {
 
     private String id;
+    private String img;
     private String url;
     private String title;
     private String contentHtml;
@@ -12,6 +13,7 @@ public class Post {
 
     public Post(){
         setId("");
+        setImg("");
         setUrl("");
         setTitle("");
         setContentHtml("");
@@ -20,12 +22,14 @@ public class Post {
 
     public Post(
             String id,
+            String img,
             String url,
             String title,
             String contentHtml,
             Date datePublished
     ){
         setId(id);
+        setImg(img);
         setUrl(url);
         setTitle(title);
         setContentHtml(contentHtml);
@@ -38,6 +42,14 @@ public class Post {
 
     public String getId() {
         return id;
+    }
+
+    public String getImg() {
+        return img;
+    }
+
+    public void setImg(String img) {
+        this.img = img;
     }
 
     public void setUrl(String url) {

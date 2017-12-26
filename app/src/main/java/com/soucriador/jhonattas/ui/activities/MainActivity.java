@@ -5,15 +5,11 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.MenuItem;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.soucriador.jhonattas.R;
-import com.soucriador.jhonattas.model.jekyll.Feed;
-import com.soucriador.jhonattas.rest.ServerClient;
-import com.soucriador.jhonattas.rest.ServerInterface;
 import com.soucriador.jhonattas.ui.fragments.PostFragment;
 import com.soucriador.jhonattas.ui.adapters.dummy.DummyContent;
 
@@ -40,12 +36,17 @@ public class MainActivity extends AppCompatActivity implements PostFragment.OnLi
 
         PostFragment pf = PostFragment.newInstance(1);
         ft = getSupportFragmentManager().beginTransaction();
+        ft.setCustomAnimations( android.R.anim.fade_in, android.R.anim.fade_out );
         ft.replace(R.id.fragmentContainer, pf);
         ft.commit();
 
-        mTextMessage = (TextView) findViewById(R.id.message);
-        BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
-        // navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+        // atualiza o titulo da actionBar
+        getSupportActionBar().setTitle(getResources().getString(R.string.title_posts));
+
+        mTextMessage                    = findViewById(R.id.message);
+        BottomNavigationView navigation = findViewById(R.id.navigation);
+
+        navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
     }
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
@@ -58,7 +59,7 @@ public class MainActivity extends AppCompatActivity implements PostFragment.OnLi
                     mTextMessage.setText(R.string.title_home);
                     return true;
                 case R.id.navigation_dashboard:
-                    mTextMessage.setText(R.string.title_dashboard);
+                    mTextMessage.setText(R.string.title_posts);
                     return true;
                 case R.id.navigation_notifications:
                     mTextMessage.setText(R.string.title_notifications);

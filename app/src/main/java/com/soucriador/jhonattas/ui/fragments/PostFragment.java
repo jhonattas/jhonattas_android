@@ -16,8 +16,6 @@ import com.soucriador.jhonattas.model.jekyll.Feed;
 import com.soucriador.jhonattas.rest.ServerClient;
 import com.soucriador.jhonattas.rest.ServerInterface;
 import com.soucriador.jhonattas.ui.adapters.FeedAdapter;
-import com.soucriador.jhonattas.ui.adapters.PostRecyclerViewAdapter;
-import com.soucriador.jhonattas.ui.adapters.dummy.DummyContent;
 import com.soucriador.jhonattas.ui.adapters.dummy.DummyContent.DummyItem;
 
 import retrofit2.Call;

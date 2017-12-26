@@ -7,11 +7,13 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.soucriador.jhonattas.R;
 import com.soucriador.jhonattas.model.jekyll.Feed;
 import com.soucriador.jhonattas.model.jekyll.Post;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -25,6 +27,7 @@ public class FeedAdapter extends RecyclerView.Adapter<FeedAdapter.FeedViewHolder
     public static class FeedViewHolder extends RecyclerView.ViewHolder {
 
         LinearLayoutCompat postsLayout;
+        ImageView postImg;
         TextView postTitle;
         TextView subtitle;
         TextView description;
@@ -33,10 +36,11 @@ public class FeedAdapter extends RecyclerView.Adapter<FeedAdapter.FeedViewHolder
         public FeedViewHolder(View v) {
             super(v);
             postsLayout     = v.findViewById(R.id.posts_layout);
+            postImg         = v.findViewById(R.id.post_img);
             postTitle       = v.findViewById(R.id.title);
             subtitle        = v.findViewById(R.id.subtitle);
             description     = v.findViewById(R.id.description);
-            rating          = v.findViewById(R.id.rating);
+            // rating          = v.findViewById(R.id.rating);
         }
     }
 
@@ -53,8 +57,9 @@ public class FeedAdapter extends RecyclerView.Adapter<FeedAdapter.FeedViewHolder
     }
 
     public void onBindViewHolder (FeedViewHolder holder, final int position) {
+        Picasso.with(context).load(posts.get(position).getImg()).into(holder.postImg);
         holder.postTitle.setText(posts.get(position).getTitle());
-        holder.description.setText(posts.get(position).getUrl());
+        holder.subtitle.setText(posts.get(position).getUrl());
     }
 
     public int getItemCount () {

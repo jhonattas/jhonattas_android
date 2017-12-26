@@ -4,4 +4,9 @@
     <string name="title_home">Inicio</string>
     <string name="title_dashboard">Painel</string>
     <string name="title_notifications">Notificações</string>
+
+    <!-- sections -->
+    <string name="last_posts">Últimas Postagens</string>
+    <string name="latest_updates">Últimas Atualizações</string>
+    <string name="title_posts">Postagens</string>
 </resources>

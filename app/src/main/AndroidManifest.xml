@@ -12,10 +12,6 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".ui.activities.MainKotlinActivity"
-            android:label="@string/app_name">
-        </activity>
-        <activity
             android:name=".ui.activities.MainActivity"
             android:label="@string/title_activity_main" />
         <activity
