@@ -10,14 +10,18 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.soucriador.jhonattas.R;
+import com.soucriador.jhonattas.ui.fragments.IntroFragment;
 import com.soucriador.jhonattas.ui.fragments.PostFragment;
 import com.soucriador.jhonattas.ui.adapters.dummy.DummyContent;
+import com.soucriador.jhonattas.ui.interfaces.OnFragmentInteractionListener;
+import com.soucriador.jhonattas.ui.interfaces.OnListFragmentInteractionListener;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class MainActivity extends AppCompatActivity implements PostFragment.OnListFragmentInteractionListener {
+public class MainActivity extends AppCompatActivity
+        implements OnListFragmentInteractionListener, OnFragmentInteractionListener {
 
     private static final String TAG = MainActivity.class.getSimpleName();
     private TextView mTextMessage;
@@ -34,14 +38,15 @@ public class MainActivity extends AppCompatActivity implements PostFragment.OnLi
             // return;
         }
 
-        PostFragment pf = PostFragment.newInstance(1);
+        IntroFragment introFragment = IntroFragment.newInstance("", "");
+
         ft = getSupportFragmentManager().beginTransaction();
         ft.setCustomAnimations( android.R.anim.fade_in, android.R.anim.fade_out );
-        ft.replace(R.id.fragmentContainer, pf);
+        ft.replace(R.id.fragmentContainer, introFragment);
         ft.commit();
 
         // atualiza o titulo da actionBar
-        getSupportActionBar().setTitle(getResources().getString(R.string.title_posts));
+        getSupportActionBar().setTitle(getResources().getString(R.string.title_home));
 
         mTextMessage                    = findViewById(R.id.message);
         BottomNavigationView navigation = findViewById(R.id.navigation);
@@ -54,15 +59,30 @@ public class MainActivity extends AppCompatActivity implements PostFragment.OnLi
 
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+            ft = getSupportFragmentManager().beginTransaction();
+            ft.setCustomAnimations( android.R.anim.fade_in, android.R.anim.fade_out );
+
             switch (item.getItemId()) {
                 case R.id.navigation_home:
-                    mTextMessage.setText(R.string.title_home);
+                    //mTextMessage.setText(R.string.title_home);
+                    getSupportActionBar().setTitle(getResources().getString(R.string.title_home));
+                    IntroFragment introFragment = IntroFragment.newInstance("", "");
+                    ft.replace(R.id.fragmentContainer, introFragment);
+                    ft.commit();
                     return true;
+
                 case R.id.navigation_dashboard:
-                    mTextMessage.setText(R.string.title_posts);
+                    //mTextMessage.setText(R.string.title_posts);
+                    getSupportActionBar().setTitle(getResources().getString(R.string.title_posts));
+
+                    PostFragment pf = PostFragment.newInstance(1);
+                    ft.replace(R.id.fragmentContainer, pf);
+                    ft.commit();
                     return true;
+
                 case R.id.navigation_notifications:
-                    mTextMessage.setText(R.string.title_notifications);
+                    //mTextMessage.setText(R.string.title_notifications);
+                    getSupportActionBar().setTitle(getResources().getString(R.string.title_aboutme));
                     return true;
             }
             return false;
@@ -71,6 +91,11 @@ public class MainActivity extends AppCompatActivity implements PostFragment.OnLi
 
     @Override
     public void onListFragmentInteraction(DummyContent.DummyItem item) {
+
+    }
+
+    @Override
+    public void onFragmentInteraction(Object obj) {
 
     }
 }

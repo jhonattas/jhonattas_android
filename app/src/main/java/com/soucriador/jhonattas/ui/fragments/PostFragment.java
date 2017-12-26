@@ -17,6 +17,7 @@ import com.soucriador.jhonattas.rest.ServerClient;
 import com.soucriador.jhonattas.rest.ServerInterface;
 import com.soucriador.jhonattas.ui.adapters.FeedAdapter;
 import com.soucriador.jhonattas.ui.adapters.dummy.DummyContent.DummyItem;
+import com.soucriador.jhonattas.ui.interfaces.OnListFragmentInteractionListener;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -111,9 +112,5 @@ public class PostFragment extends Fragment {
     public void onDetach() {
         super.onDetach();
         mListener = null;
-    }
-
-    public interface OnListFragmentInteractionListener {
-        void onListFragmentInteraction(DummyItem item);
     }
 }

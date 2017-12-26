@@ -7,8 +7,8 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.soucriador.jhonattas.R;
-import com.soucriador.jhonattas.ui.fragments.PostFragment.OnListFragmentInteractionListener;
 import com.soucriador.jhonattas.ui.adapters.dummy.DummyContent.DummyItem;
+import com.soucriador.jhonattas.ui.interfaces.OnListFragmentInteractionListener;
 
 import java.util.List;
 
