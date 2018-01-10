@@ -1,7 +1,7 @@
 package com.soucriador.jhonattas.ui.interfaces;
 
-import com.soucriador.jhonattas.ui.adapters.dummy.DummyContent;
+import com.soucriador.jhonattas.model.jekyll.Post;
 
 public interface OnListFragmentInteractionListener {
-    void onListFragmentInteraction(DummyContent.DummyItem item);
+    void onListFragmentInteraction(Post post);
 }

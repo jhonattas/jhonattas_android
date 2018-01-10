@@ -16,7 +16,7 @@ import com.soucriador.jhonattas.model.jekyll.Feed;
 import com.soucriador.jhonattas.rest.ServerClient;
 import com.soucriador.jhonattas.rest.ServerInterface;
 import com.soucriador.jhonattas.ui.adapters.FeedAdapter;
-import com.soucriador.jhonattas.ui.adapters.dummy.DummyContent.DummyItem;
+import com.soucriador.jhonattas.ui.interfaces.OnFragmentInteractionListener;
 import com.soucriador.jhonattas.ui.interfaces.OnListFragmentInteractionListener;
 
 import retrofit2.Call;
@@ -29,7 +29,7 @@ public class PostFragment extends Fragment {
 
     private static final String ARG_COLUMN_COUNT = "column-count";
     private int mColumnCount = 1;
-    private OnListFragmentInteractionListener mListener;
+    private OnFragmentInteractionListener mListener;
     private RecyclerView recyclerView;
     private Feed feed = null;
 
@@ -83,7 +83,7 @@ public class PostFragment extends Fragment {
                     feed = response.body();
                     Log.d(TAG, "dados recuperados: " + feed.toString());
                     if(feed != null) {
-                        recyclerView.setAdapter(new FeedAdapter(feed.getItems(), R.layout.list_item_post, getContext()));
+                        recyclerView.setAdapter(new FeedAdapter(feed.getItems(), R.layout.list_item_post, getContext(), mListener));
                     }
                 }
 
@@ -102,7 +102,7 @@ public class PostFragment extends Fragment {
     public void onAttach(Context context) {
         super.onAttach(context);
         if (context instanceof OnListFragmentInteractionListener) {
-            mListener = (OnListFragmentInteractionListener) context;
+            mListener = (OnFragmentInteractionListener) context;
         } else {
             throw new RuntimeException(context.toString() + " must implement OnListFragmentInteractionListener");
         }

@@ -5,14 +5,15 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.MenuItem;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.soucriador.jhonattas.R;
+import com.soucriador.jhonattas.model.jekyll.Post;
 import com.soucriador.jhonattas.ui.fragments.IntroFragment;
 import com.soucriador.jhonattas.ui.fragments.PostFragment;
-import com.soucriador.jhonattas.ui.adapters.dummy.DummyContent;
 import com.soucriador.jhonattas.ui.interfaces.OnFragmentInteractionListener;
 import com.soucriador.jhonattas.ui.interfaces.OnListFragmentInteractionListener;
 
@@ -90,12 +91,11 @@ public class MainActivity extends AppCompatActivity
     };
 
     @Override
-    public void onListFragmentInteraction(DummyContent.DummyItem item) {
-
+    public void onListFragmentInteraction(Post post) {
+        Log.d(TAG, post.toString());
     }
 
     @Override
     public void onFragmentInteraction(Object obj) {
-
     }
 }
