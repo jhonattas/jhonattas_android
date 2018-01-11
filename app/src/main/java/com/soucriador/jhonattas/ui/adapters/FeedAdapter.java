@@ -1,6 +1,7 @@
 package com.soucriador.jhonattas.ui.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v4.view.LayoutInflaterCompat;
 import android.support.v7.widget.LinearLayoutCompat;
 import android.support.v7.widget.RecyclerView;
@@ -14,6 +15,7 @@ import android.widget.Toast;
 import com.soucriador.jhonattas.R;
 import com.soucriador.jhonattas.model.jekyll.Feed;
 import com.soucriador.jhonattas.model.jekyll.Post;
+import com.soucriador.jhonattas.ui.activities.PostDetailsActivity;
 import com.soucriador.jhonattas.ui.interfaces.OnFragmentInteractionListener;
 import com.squareup.picasso.Picasso;
 
@@ -75,6 +77,13 @@ public class FeedAdapter extends RecyclerView.Adapter<FeedAdapter.FeedViewHolder
                     // fragment is attached to one) holder.pizza);
                 }
                 Toast.makeText(v.getContext(), "O item " + posts.get(position).getTitle() + " foi clicado", Toast.LENGTH_SHORT).show();
+                Intent i = new Intent(v.getContext(), PostDetailsActivity.class);
+
+                i.putExtra("post_id", posts.get(position).getId());
+                i.putExtra("image_url", posts.get(position).getImg());
+                i.putExtra("title", posts.get(position).getTitle());
+
+                v.getContext().startActivity(i);
             }
         });
     }
