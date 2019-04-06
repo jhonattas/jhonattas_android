@@ -66,7 +66,7 @@ public class FeedAdapter extends RecyclerView.Adapter<FeedAdapter.FeedViewHolder
     }
 
     public void onBindViewHolder (FeedViewHolder holder, final int position) {
-        Picasso.with(context).load(posts.get(position).getImg()).into(holder.postImg);
+        // Picasso.with(context).load(posts.get(position).getImg()).into(holder.postImg);
         holder.postTitle.setText(posts.get(position).getTitle());
         holder.subtitle.setText(posts.get(position).getUrl());
         holder.mView.setOnClickListener(new View.OnClickListener() {

@@ -67,7 +67,7 @@ public class PostDetailsActivity extends AppCompatActivity {
         //prepareAlbums();
 
         try {
-            Picasso.with(this).load(postImg).into(backdrop);
+            // TODO Picasso.with(this).load(postImg).into(backdrop);
         } catch (Exception e) {
             e.printStackTrace();
         }
