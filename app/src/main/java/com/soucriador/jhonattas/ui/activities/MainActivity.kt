@@ -35,7 +35,7 @@ class MainActivity : AppCompatActivity(), OnListFragmentInteractionListener, OnF
         ft.commit()
 
         // atualiza o titulo da actionBar
-        supportActionBar!!.title = resources.getString(R.string.title_home)
+        supportActionBar?.title = resources.getString(R.string.title_home)
         mTextMessage = findViewById(R.id.message)
         val navigation = findViewById<BottomNavigationView>(R.id.navigation)
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
