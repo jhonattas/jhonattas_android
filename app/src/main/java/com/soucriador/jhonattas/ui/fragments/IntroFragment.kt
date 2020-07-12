@@ -53,11 +53,13 @@ class IntroFragment : Fragment() {
         private const val ARG_PARAM1 = "param1"
         private const val ARG_PARAM2 = "param2"
 
-        fun newInstance(param1: String?, param2: String?): IntroFragment {
+        @JvmStatic
+        fun newInstance(s: String, s1: String): IntroFragment {
+
             val fragment = IntroFragment()
             val args = Bundle()
-            args.putString(ARG_PARAM1, param1)
-            args.putString(ARG_PARAM2, param2)
+            args.putString(ARG_PARAM1, s)
+            args.putString(ARG_PARAM2, s1)
             fragment.arguments = args
             return fragment
         }

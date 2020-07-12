@@ -53,7 +53,7 @@ class PostFragment : Fragment() {
                     feed = response.body()
                     Log.d(TAG, "dados recuperados: " + feed.toString())
                     if (feed != null) {
-                        recyclerView!!.adapter = FeedAdapter(feed!!.items, R.layout.list_item_post, getContext(), mListener)
+                        recyclerView!!.adapter = FeedAdapter(feed!!.items, R.layout.list_item_post, context, mListener)
                     }
                 }
 
@@ -86,6 +86,7 @@ class PostFragment : Fragment() {
             return PostFragment()
         }
 
+        @JvmStatic
         fun newInstance(columnCount: Int): PostFragment {
             val fragment = PostFragment()
             val args = Bundle()
@@ -93,5 +94,6 @@ class PostFragment : Fragment() {
             fragment.arguments = args
             return fragment
         }
+
     }
 }
