@@ -18,4 +18,6 @@
     <string name="backdrop_title">LOVE MUSIC</string>
     <string name="backdrop_subtitle">This season top 20 albums</string>
     <string name="title_activity_project_details" translatable="false">ProjectDetailsActivity</string>
+
+    <string name="please_obtain_key">Please obtain your API KEY</string>
 </resources>

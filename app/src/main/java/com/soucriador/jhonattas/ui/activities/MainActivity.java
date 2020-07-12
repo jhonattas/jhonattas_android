@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
 
         if(API_KEY.isEmpty()) {
-            Toast.makeText(this, "Please obtain your API KEY", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.please_obtain_key, Toast.LENGTH_SHORT).show();
             // return;
         }
 

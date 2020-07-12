@@ -15,4 +15,5 @@
     <string name="action_play_next">Reproduzir próximo</string>
     <string name="backdrop_subtitle">Top 20 albuns dessa temporada</string>
     <string name="backdrop_title">AMAR MUSICA</string>
+    <string name="please_obtain_key">Por favor, obtenha uma CHAVE DE API</string>
 </resources>
