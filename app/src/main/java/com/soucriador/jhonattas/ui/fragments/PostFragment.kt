@@ -36,8 +36,8 @@ class PostFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_post_list, container, false)
-        val serverService = ServerClient.getClient().create(ServerInterface::class.java)
-        val feedCall = serverService.feed
+        val serverService = ServerClient.client?.create(ServerInterface::class.java)
+        val feedCall = serverService?.feed
 
         // Set the adapter
         if (view is RecyclerView) {
@@ -48,7 +48,7 @@ class PostFragment : Fragment() {
             } else {
                 recyclerView!!.layoutManager = GridLayoutManager(context, mColumnCount)
             }
-            feedCall.enqueue(object : Callback<Feed?> {
+            feedCall?.enqueue(object : Callback<Feed?> {
                 override fun onResponse(call: Call<Feed?>, response: Response<Feed?>) {
                     feed = response.body()
                     Log.d(TAG, "dados recuperados: " + feed.toString())
