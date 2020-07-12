@@ -7,7 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.soucriador.jhonattas.R
 
 class SplashScreenActivity : AppCompatActivity(), Runnable {
-    private val SPLASH_TIME_OUT = 3000L
+    private val SPLASH_TIME_OUT = 1000L
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash_screen)
