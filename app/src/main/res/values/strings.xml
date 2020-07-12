@@ -3,7 +3,7 @@
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
-    <string name="title_activity_main">MainActivity</string>
+    <string name="title_activity_main" translatable="false">MainActivity</string>
 
     <!-- sections -->
     <string name="last_posts">Latest Posts</string>
@@ -17,5 +17,5 @@
     <string name="action_play_next">Play Next</string>
     <string name="backdrop_title">LOVE MUSIC</string>
     <string name="backdrop_subtitle">This season top 20 albums</string>
-    <string name="title_activity_project_details">ProjectDetailsActivity</string>
+    <string name="title_activity_project_details" translatable="false">ProjectDetailsActivity</string>
 </resources>

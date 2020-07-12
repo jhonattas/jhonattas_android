@@ -10,4 +10,9 @@
     <string name="latest_updates">Últimas Atualizações</string>
     <string name="title_posts">Postagens</string>
     <string name="title_aboutme">Sobre Mim</string>
+    <string name="hello_blank_fragment">Olá fragment em branco</string>
+    <string name="action_add_favourite">Adicionar aos favoritos</string>
+    <string name="action_play_next">Reproduzir próximo</string>
+    <string name="backdrop_subtitle">Top 20 albuns dessa temporada</string>
+    <string name="backdrop_title">AMAR MUSICA</string>
 </resources>
