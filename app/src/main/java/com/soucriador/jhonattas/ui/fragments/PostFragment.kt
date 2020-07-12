@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.soucriador.jhonattas.R
 import com.soucriador.jhonattas.model.jekyll.Feed
+import com.soucriador.jhonattas.model.jekyll.Post
 import com.soucriador.jhonattas.rest.ServerClient
 import com.soucriador.jhonattas.rest.ServerInterface
 import com.soucriador.jhonattas.ui.adapters.FeedAdapter
@@ -49,11 +50,10 @@ class PostFragment : Fragment() {
             }
             feedCall.enqueue(object : Callback<Feed?> {
                 override fun onResponse(call: Call<Feed?>, response: Response<Feed?>) {
-                    feed = Feed()
                     feed = response.body()
                     Log.d(TAG, "dados recuperados: " + feed.toString())
                     if (feed != null) {
-                        recyclerView!!.adapter = FeedAdapter(feed!!.items, R.layout.list_item_post, context, mListener)
+                        recyclerView!!.adapter = FeedAdapter(feed!!.items as List<Post>, R.layout.list_item_post, context, mListener)
                     }
                 }
 
